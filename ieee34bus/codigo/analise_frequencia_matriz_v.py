@@ -34,7 +34,8 @@ nomesMonitores = dss.monitors.names
 
 # Define o espectro de frequências a serem analisadas
 harmonicos = np.arange(1,50.001,(0.5/60)).tolist()
-dss.text("New spectrum.espectroharmonico numharm={}")
+dss.text("New spectrum.espectroharmonico numharm={}".format(str(len(harmonicos))))
+#dss.text("New spectrum.espectroharmonico numharm={} csvfile=espectro_harmonico_longo.csv".format(str(len(harmonicos))))
 
 # Cria loop de fonte de corrente harmônica
 for j in range(0,len(nomesNos)):
@@ -55,11 +56,14 @@ for j in range(0,len(nomesNos)):
     for h in range(len(harmonicos)):
         dss.text("Set harmonic={}".format(harmonicos[h]))
         dss.solution.solve()
-        indice = "node_" + str(node) + "_frequencia_" + str(round(harmonicos[h]*60,1))
+        frequencia = str(round(harmonicos[h]*60,1))
+        #indice = "node_" + str(node) + "_frequencia_" + str(round(harmonicos[h]*60,1))
+        indice = "node_" + str(node) + "_frequencia_" + frequencia
         matrixV[indice] = dss.circuit.buses_volts
         dss.monitors.reset_all()
 
-        print("Nó " + node + " Frequência " + str(round(harmonicos[h]*60,1)))
+        #print("Nó " + node + " Frequência " + str(round(harmonicos[h]*60,1)))
+        print("Nó " + node + " Frequência " + frequencia)
 
     matrixV.to_csv("../arquivos_csv/v_node_{}.csv".format(node))
     print("Matriz V exportada")

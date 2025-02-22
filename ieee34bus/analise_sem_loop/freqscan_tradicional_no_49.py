@@ -1,5 +1,5 @@
 import py_dss_interface
-import pandas as pd
+# import pandas as pd
 import numpy as np
 import os
 import pathlib
@@ -28,8 +28,8 @@ dss.solution.solve()
 dss.text("Spectrum.DefaultLoad.NumHarm=1")
 
 # Define o espectro de frequências a serem analisadas
-harmonicos = np.arange(1,50.001,(0.5/60)).tolist()
-dss.text("New spectrum.espectroharmonico numharm={} csvfile=espectro_harmonico.csv".format(str(len(harmonicos))))
+harmonicos = np.arange(1,100.001,(0.5/60)).tolist()
+dss.text("New spectrum.espectroharmonico numharm={} csvfile=espectro_harmonico_longo.csv".format(str(len(harmonicos))))
 
 #  Adiciona a fonte de corrente harmônica de sequência positiva
 node = nomesNos[49]
@@ -52,10 +52,10 @@ dss.solution.solve()
 dss.text("Set mode=harmonic")
 dss.solution.solve()
 
-# Plota todos os monitores
-for k in range(len(nomesMonitores)):
-   monitor = nomesMonitores[k]
-   dss.text("Plot monitor object={} channels=(1 3 5)".format(monitor))
+# # Plota todos os monitores
+# for k in range(len(nomesMonitores)):
+#    monitor = nomesMonitores[k]
+#    dss.text("Plot monitor object={} channels=(1 3 5)".format(monitor))
 
 # Exporta todos os valores dos monitores
 dss.text("Export monitors all")

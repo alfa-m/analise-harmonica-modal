@@ -34,7 +34,8 @@ nomesMonitores = dss.monitors.names
 
 # Define o espectro de frequências a serem analisadas
 harmonicos = np.arange(1,50.001,(0.5/60)).tolist()
-dss.text("New spectrum.espectroharmonico numharm={}")
+dss.text("New spectrum.espectroharmonico numharm={}".format(str(len(harmonicos))))
+#dss.text("New spectrum.espectroharmonico numharm={} csvfile=espectro_harmonico_longo.csv".format(str(len(harmonicos))))
 
 #  Adiciona a fonte de corrente harmônica de sequência positiva
 node = nomesNos[0]
@@ -52,11 +53,15 @@ dss.text("Set mode=harmonic")
 for h in range(len(harmonicos)):
     dss.text("Set harmonic={}".format(harmonicos[h]))
     dss.solution.solve()
-    indice = "frequencia_" + str(round(harmonicos[h]*60,1))
+    frequencia = str(round(harmonicos[h]*60,1))
+    #indice = "frequencia_" + str(round(harmonicos[h]*60,1))
+    indice = "frequencia_" + frequencia
     dss.monitors.reset_all()
 
-    print(" Frequência " + str(round(harmonicos[h]*60,1)))
+    #print("Frequência " + str(round(harmonicos[h]*60,1)))
+    print("Frequência " + frequencia)
     matrixY = pd.DataFrame(dss.circuit.system_y)
-    matrixY.to_csv("../arquivos_csv/y_frequencia_{}.csv".format(str(round(harmonicos[h]*60,1))))
+    #matrixY.to_csv("../arquivos_csv/y_frequencia_{}.csv".format(str(round(harmonicos[h]*60,1))))
+    matrixY.to_csv("../arquivos_csv/y_frequencia_{}.csv".format(frequencia))
 
 print("Análise harmônica finalizada. Matrizes Y complexas salvas na pasta arquivos_csv")
