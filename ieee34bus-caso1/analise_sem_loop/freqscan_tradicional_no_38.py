@@ -55,7 +55,6 @@ dss.solution.solve()
 #    dss.text("Plot monitor object={} channels=(1 3 5)".format(monitor))
 
 # Exporta todos os valores dos monitores
-#dss.text("Export monitors all")
-dss.text("Export monitor l18_828_1")
+dss.text("Export monitors all")
 
 print("Análise harmônica no nó {} finalizada".format(node))
