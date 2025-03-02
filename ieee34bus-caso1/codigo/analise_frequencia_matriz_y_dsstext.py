@@ -31,8 +31,9 @@ nomesMonitores = dss.monitors.names
 
 # Define o espectro de frequências a serem analisadas
 harmonicos = np.arange(1,50.001,(0.5/60)).tolist()
-dss.text("New spectrum.espectroharmonico numharm={}")
+#dss.text("New spectrum.espectroharmonico numharm={}")
 #dss.text("New spectrum.espectroharmonico numharm={} csvfile=espectro_harmonico_longo.csv".format(str(len(harmonicos))))
+dss.text("New spectrum.espectroharmonico numharm={} csvfile=espectro_harmonico.csv".format(str(len(harmonicos))))
 
 #  Adiciona a fonte de corrente harmônica de sequência positiva
 node = nomesNos[0]
