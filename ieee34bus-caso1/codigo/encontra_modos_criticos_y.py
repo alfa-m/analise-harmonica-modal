@@ -16,12 +16,12 @@ for matriz in matrizes_diagonais:
     matriz_diagonal_inversa_df.columns = lista_de_nos
     matriz_diagonal_inversa_df.to_csv("../arquivos_csv/inversa_{}".format(matriz))
     valores_diagonais = np.linalg.diagonal(matriz_diagonal_inversa)
-    valores_minimos = pd.DataFrame(valores_diagonais, index=lista_de_nos, columns=["autovalores"])
-    #valores_minimos.to_csv("../arquivos_csv/valores_minimos_{}".format(matriz))
-    valores_minimos_ordenados = valores_minimos.sort_values(by=["autovalores"])
-    valores_minimos_ordenados.to_csv("../arquivos_csv/valores_minimos_ordenados_{}".format(matriz))
-    modo_critico = valores_minimos_ordenados.iloc[0,0]
-    indice_modo_critico = valores_minimos_ordenados[valores_minimos_ordenados["autovalores"] == modo_critico].index[0]
+    valores_maximos = pd.DataFrame(valores_diagonais, index=lista_de_nos, columns=["autovalores"])
+    #valores_maximos.to_csv("../arquivos_csv/valores_maximos_{}".format(matriz))
+    valores_maximos_ordenados = valores_maximos.sort_values(by=["autovalores"], ascending=False)
+    valores_maximos_ordenados.to_csv("../arquivos_csv/valores_maximos_ordenados_{}".format(matriz))
+    modo_critico = valores_maximos_ordenados.iloc[0,0]
+    indice_modo_critico = valores_maximos_ordenados[valores_maximos_ordenados["autovalores"] == modo_critico].index[0]
     modos_criticos.loc[matriz] = indice_modo_critico, modo_critico
 
 modos_criticos.to_csv('../arquivos_csv/modos_criticos_caso1.csv')
