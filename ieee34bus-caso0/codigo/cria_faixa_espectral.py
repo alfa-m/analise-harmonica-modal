@@ -12,5 +12,6 @@ harmonicos_pd["amplitude"] = 100
 harmonicos_pd["angulo"] = 0
 
 harmonicos_pd.to_csv("../arquivos_csv/espectro_harmonico.csv")
+harmonicos_pd.to_csv("./espectro_harmonico.csv", header=False, index=0)
 
 print("Arquivo .csv com faixa espectral criado")
